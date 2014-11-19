@@ -1,0 +1,18 @@
+var promise = fs.readFileAsync('./name.json', { encoding: 'utf8' })
+
+promise = promise.then(function(content) {
+	name = JSON.parse(content).name;
+});
+
+promise = promise.then(function() {
+	return fs.readFileAsync('./email.json', { encoding: 'utf8' });
+});
+
+promise = promise.then(function(content) {
+	email = JSON.parse(content).email;
+});
+
+promise = promise.then(function() {
+	console.log('I am all done. I got this info... name: %s, email: %s', name, email);
+});
+
